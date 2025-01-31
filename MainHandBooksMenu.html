@@ -49,17 +49,17 @@
 </head>
 <body>
     <div class="button-grid">
-        <button class="button" id="TestEnglishKurs1" onclick="functionToExecute('TestEnglishKurs1')" href="./courses/TestEnglishKurs/TestEnglishKurs.html">Google</button>
-        <button class="button" id="TestEnglishKurs2" onclick="functionToExecute('TestEnglishKurs2')" href="./courses/TestEnglishKurs/TestEnglishKurs.html">YouTube</button>
-        <button class="button" id="TestEnglishKurs3" onclick="functionToExecute('TestEnglishKurs3')" href="./courses/TestEnglishKurs/TestEnglishKurs.html">Wikipedia</button>
-        <button class="button" id="TestEnglishKurs4" onclick="functionToExecute('TestEnglishKurs4')" href="./courses/TestEnglishKurs/TestEnglishKurs.html">GitHub</button>
-        <button class="button" id="TestEnglishKurs5" onclick="functionToExecute('TestEnglishKurs5')" href="./courses/TestEnglishKurs/TestEnglishKurs.html">Stack Overflow</button>
-        <button class="button" id="TestEnglishKurs6" onclick="functionToExecute('TestEnglishKurs6')" href="./courses/TestEnglishKurs/TestEnglishKurs.html">Facebook</button>
+        <button class="button" id="TestEnglishKurs1" onclick="functionToExecute(id)" course_addr="./courses/TestEnglishKurs/TestEnglishKurs.html">Google</button>
+        <button class="button" id="TestEnglishKurs2" onclick="functionToExecute(id)" course_addr="./courses/TestEnglishKurs/TestEnglishKurs.html">YouTube</button>
+        <button class="button" id="TestEnglishKurs3" onclick="functionToExecute(id)" course_addr="./courses/TestEnglishKurs/TestEnglishKurs.html">Wikipedia</button>
+        <button class="button" id="TestEnglishKurs4" onclick="functionToExecute(id)" course_addr="./courses/TestEnglishKurs/TestEnglishKurs.html">GitHub</button>
+        <button class="button" id="TestEnglishKurs5" onclick="functionToExecute(id)" course_addr="./courses/TestEnglishKurs/TestEnglishKurs.html">Stack Overflow</button>
+        <button class="button" id="TestEnglishKurs6" onclick="functionToExecute(id)" course_addr="./courses/TestEnglishKurs/TestEnglishKurs.html">Facebook</button>
     </div>
 
     <script>
         function functionToExecute(id) {
-            window.open("./courses/TestEnglishKurs/TestEnglishKurs.html", '_blank');
+            window.open(document.getElementById(id).getAttribute('course_addr'), '_blank');
         }
         // Add click event to all buttons
         const buttons = document.querySelectorAll('.button');
