@@ -1,223 +1,76 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>
-      GoLingWay, изучение иностранных языков
-    </title>
-
-    <meta http-equiv="content-type" content="text/html;charset=utf-8">
-    <meta name="description" content="Онлайн площадка для изучения иностранных языков">
-     
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Grid</title>
     <style>
-      body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-      }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+        }
 
-      .header {
-        width: 100%;
-        background-color: #343a40;
-        color: #fff;
-        padding: 15px 20px;
-        text-align: center;
-        font-size: 20px;
-        font-weight: bold;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      }
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 columns per row */
+            gap: 20px;
+            max-width: 600px;
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
 
-      .container {
-        display: flex;
-      }
+        .button {
+            width: 120px; /* Base width */
+            height: 160px; /* 4:3 ratio (Height > Width) */
+            background-color: #007bff;
+            color: #fff;
+            font-size: 14px;
+            font-weight: bold;
+            text-align: center;
+            line-height: 160px; /* Center text vertically */
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
 
-      .panel {
-        width: 20%;
-        background-color: #f8f9fa;
-        padding: 20px;
-        box-sizing: border-box;
-        border-right: 1px solid #ddd;
-        min-height: calc(100vh - 50px); /* Учитываем высоту верхней панели */
-      }
-
-      .panel-right {
-        border-left: 1px solid #ddd;
-        border-right: none;
-      }
-
-      .main {
-        flex: 1;
-        padding: 20px;
-        box-sizing: border-box;
-      }
-
-      .dropdown {
-        margin-bottom: 20px;
-      }
-
-      .dropdown-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        cursor: pointer;
-        font-size: 16px;
-        font-weight: bold;
-        border: 1px solid #ccc;
-        padding: 10px;
-        background-color: #f9f9f9;
-        border-radius: 4px;
-      }
-
-      .dropdown-content {
-        display: none;
-        margin-top: 5px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        background-color: #fff;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        overflow: hidden;
-      }
-
-      .dropdown-content button {
-        display: block;
-        width: 100%;
-        padding: 10px;
-        text-align: left;
-        background: none;
-        border: none;
-        font-size: 14px;
-        cursor: pointer;
-      }
-
-      .dropdown-content button:hover {
-        background-color: #f0f0f0;
-      }
-
-      .dropdown.open .dropdown-content {
-        display: block;
-      }
-
-      .number {
-        margin-right: 10px;
-        color: #555;
-      }
-
-      .collapse-btn {
-        display: inline-block;
-        margin-bottom: 20px;
-        padding: 10px 20px;
-        font-size: 14px;
-        font-weight: bold;
-        color: #fff;
-        background-color: #007bff;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-      }
-
-      .collapse-btn:hover {
-        background-color: #0056b3;
-      }
-
-      .panel-left .panel-buttons button {
-        display: block;
-        margin-bottom: 10px;
-        padding: 10px;
-        font-size: 14px;
-        color: #fff;
-        background-color: #28a745;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-      }
-
-      .panel-left .panel-buttons button:hover {
-        background-color: #218838;
-      }
-
-      .panel-right .stats {
-        font-size: 16px;
-        font-weight: bold;
-      }
+        .button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
     </style>
-
-  </head>
-  <body>
-    <!-- Верхняя панель -->
-    <div class="header">Хендбук</div>
-
-    <div class="container">
-        <!-- Левая панель -->
-        <div class="panel panel-left">
-            <div class="panel-buttons">
-                <button>Кнопка 1</button>
-                <button>Кнопка 2</button>
-                <button>Кнопка 3</button>
-            </div>
-        </div>
-
-        <!-- Основной контент -->
-        <div class="main">
-            <button class="collapse-btn" id="collapseAll">Свернуть все списки</button>
-
-            <!-- Первый выпадающий список -->
-            <div class="dropdown" id="dropdown1">
-                <div class="dropdown-header">
-                    <span><span class="number">1.</span> Ночь</span>
-                    <button class="toggle-button">+</button>
-                </div>
-                <div class="dropdown-content">
-                    <button><span class="number">1.1</span> вечер</button>
-                    <button><span class="number">1.2</span> полночь</button>
-                </div>
-            </div>
-
-            <!-- Второй выпадающий список -->
-            <div class="dropdown" id="dropdown2">
-                <div class="dropdown-header">
-                    <span><span class="number">2.</span> День</span>
-                    <button class="toggle-button">+</button>
-                </div>
-                <div class="dropdown-content">
-                    <button><span class="number">2.1</span> утро</button>
-                    <button><span class="number">2.2</span> полдень</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Правая панель -->
-        <div class="panel panel-right">
-            <div class="stats">
-                Статистика параграфов:
-                <ul>
-                    <li>Пройдено: 0</li>
-                    <li>Осталось: 2</li>
-                </ul>
-            </div>
-        </div>
+</head>
+<body>
+    <div class="button-grid">
+        <button class="button" id="TestEnglishKurs1" onclick="functionToExecute('TestEnglishKurs1')" href="./courses/TestEnglishKurs/TestEnglishKurs.html">Google</button>
+        <button class="button" id="TestEnglishKurs2" onclick="functionToExecute('TestEnglishKurs2')" href="./courses/TestEnglishKurs/TestEnglishKurs.html">YouTube</button>
+        <button class="button" id="TestEnglishKurs3" onclick="functionToExecute('TestEnglishKurs3')" href="./courses/TestEnglishKurs/TestEnglishKurs.html">Wikipedia</button>
+        <button class="button" id="TestEnglishKurs4" onclick="functionToExecute('TestEnglishKurs4')" href="./courses/TestEnglishKurs/TestEnglishKurs.html">GitHub</button>
+        <button class="button" id="TestEnglishKurs5" onclick="functionToExecute('TestEnglishKurs5')" href="./courses/TestEnglishKurs/TestEnglishKurs.html">Stack Overflow</button>
+        <button class="button" id="TestEnglishKurs6" onclick="functionToExecute('TestEnglishKurs6')" href="./courses/TestEnglishKurs/TestEnglishKurs.html">Facebook</button>
     </div>
 
     <script>
-        // Обработка кликов по кнопкам для открытия/закрытия списка
-        document.querySelectorAll('.dropdown').forEach(dropdown => {
-            const header = dropdown.querySelector('.dropdown-header');
-            const toggleButton = dropdown.querySelector('.toggle-button');
-
-            header.addEventListener('click', () => {
-                dropdown.classList.toggle('open');
-                toggleButton.textContent = dropdown.classList.contains('open') ? '-' : '+';
-            });
-        });
-
-        // Кнопка "Свернуть все списки"
-        const collapseAllButton = document.getElementById('collapseAll');
-        collapseAllButton.addEventListener('click', () => {
-            document.querySelectorAll('.dropdown').forEach(dropdown => {
-                dropdown.classList.remove('open');
-                dropdown.querySelector('.toggle-button').textContent = '+';
-            });
+        function functionToExecute(id) {
+            window.open("./courses/TestEnglishKurs/TestEnglishKurs.html", '_blank');
+        }
+        // Add click event to all buttons
+        const buttons = document.querySelectorAll('.button');
+        buttons.forEach(button => {
+            //button.addEventListener('click', () => {
+                //const id = button.getAttribute('data-id');
+                //const name = button.getAttribute('data-name');
+                //const url = `new-site.html?id=${id}&name=${encodeURIComponent(name)}`;
+                //window.open(url, '_blank'); // Open the new site in a new tab
+            //});
         });
     </script>
-  </body>
+</body>
 </html>
